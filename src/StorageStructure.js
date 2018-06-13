@@ -1,4 +1,4 @@
 export default {
     list: [],
-    version:'0'
+    version:'0.'
 }

@@ -51,7 +51,7 @@ class App extends Component {
 	addItem = () => {
 		let list = [...this.state.list, {
 			name: this.state.value,
-			id:this.maxId
+			id: this.maxId++
 		}];
 		this.storageFunctions.modify("list", list);
 		this.setState({
@@ -78,27 +78,42 @@ class App extends Component {
 			})
 		}
 	}
+	removeItemsFromSelected = () => {
+		let selected = this.state.selected;
+		let list = this.state.list;
+		selected.forEach((e) => {
+			let index = -1;
+			list.forEach((ee, i) => {
+				if (ee.id === e) index = i;
+			})
+			list.splice(index, 1);
+		});
+		this.storageFunctions.modify("list", list);
+		this.setState({
+			selected: [],
+			list: list
+		});
+	}
 	render() {
 		let list = this.state.list;
-		return (
-			<div className="App">
+		return <div className="App">
+				<div className={"indicator" + (this.state.selected.length > 0 ? " active" : "")}>
+					{!!this.state.selected.length && <div className="title">
+						{this.state.selected.length + " selected"}
+					</div>}
+					{!this.state.selected.length && <center>
+						Todo
+					</center>}
+					{!!this.state.selected.length && <div className="icon" onClick={this.removeItemsFromSelected}>
+						<i className = "fa fa-trash"></i>
+					</div>}
+				</div>
 				{list.map((e, i) => {
-					return <ListItem
-						key={i}
-						name={e.name}
-						id={e.id}
-						toggleSelected={this.toggleSelected}/>;
+					return <ListItem key={i} name={e.name} id={e.id} toggleSelected={this.toggleSelected} />;
 				})}
-				{!!this.state.selected.length && <div className="indicator">
-					{(this.state.selected.length + " selected")}
-				</div>}
-				<input
-					type="text"
-					value={this.state.value}
-					onChange={this.changeText} />
+				<input type="text" value={this.state.value} onChange={this.changeText} />
 				<button onClick={this.addItem}> Add</button>
-			</div>
-		);
+			</div>;
 	}
 }
 

@@ -2,38 +2,29 @@
 	text-align: center;
 }
 
-.App-logo {
-	animation: App-logo-spin infinite 20s linear;
-	height: 80px;
-}
-
-.App-header {
-	background-color: #222;
-	height: 150px;
-	padding: 20px;
-	color: white;
-}
-
-.App-title {
-	font-size: 1.5em;
-}
-
-.App-intro {
-	font-size: large;
-}
-
-@keyframes App-logo-spin {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
-}
 .indicator {
 	margin: 20px 0;
-	height: 40px;
+	height:50px;
+	line-height:50px;
+	padding:0 20px;
+}
+.indicator.active{
 	color: rgb(225,0,80);
 	background:rgb(251, 224, 234);
-	line-height:40px;
+}
+.title{
+	width:80%;
+	height:100%;
+	line-height:50px;
+	text-align:left;
+	float:left;
+}
+.icon{
+	width:20%;
+	height:100%;
+	line-height:50px;
+	text-align:right;
+	float:right;
+	cursor:pointer;
+	color:#666;
 }
