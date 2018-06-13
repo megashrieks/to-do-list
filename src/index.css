@@ -17,15 +17,6 @@ body {
   box-shadow:0 0 10px rgba(0,0,0,0.1);
   padding:40px;
 }
-.todo{
-  width:100%;
-  height:40px;
-  line-height:40px;
-  list-style-type: none;
-  text-align:center;
-  margin:5px 0;
-  background:#eee;
-}
 input{
   width:calc(100% - 100px);
   height:50px;

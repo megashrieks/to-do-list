@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import ListItem from './components/ListItem/ListItem';
 
 class App extends Component {
 	state = {
@@ -19,12 +20,11 @@ class App extends Component {
 	}
 	render() {
 		let list = this.state.list;
-		list = list.map((e, i) => {
-			return <li className="todo" key={i} onClick={()=>alert(e)}>{e}</li>
-		});
 		return (
 			<div className="App">
-				{list}
+				{list.map((e, i) => {
+					return <ListItem key={i} name={e} />;
+				})}
 				<input
 					type="text" value={this.state.value}
 					onChange={this.changeText} />
