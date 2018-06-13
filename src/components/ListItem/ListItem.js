@@ -1,12 +1,25 @@
-import React from 'react';
+import React,{Component} from 'react';
 import './ListItem.css';
-export default (props) => {
-    let clickAction = () => {
-        alert(props.name);
+class ListItem extends Component{
+    state = {
+        selected: false
     }
-    return (
-        <li className="todo" onClick={clickAction}>
-            {props.name}
-        </li>
-    );
+    clickAction = () => {
+        this.setState(prevState => {
+            this.props.toggleSelected(this.props.id+1, !prevState.selected);
+            return { selected: !prevState.selected }
+        });
+    }
+    render() {
+        return (
+            <li className={"todo"+(this.state.selected ? " selected" : "")}>
+                <div
+                    className="name"
+                    onClick={this.clickAction}>
+                    {this.props.name}
+                </div>
+            </li>
+        );
+    }
 }
+export default ListItem;
